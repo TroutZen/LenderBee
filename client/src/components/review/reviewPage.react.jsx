@@ -1,28 +1,31 @@
 var React = require('react');
 var Reflux = require('reflux');
-var reviewPageStore = require('../../stores/reviewPageStore.js');
+var reviewStore = require('../../stores/reviews.js');
 var actions = require('../../actions/actions.js');
 var Review = require('./review.react.jsx');
 
-var ReviewPage = React.createClass({
+var Reviews = React.createClass({
 
-  //listens to reviewPageStore
-  mixins: [Reflux.connect(reviewPageStore)],
+  componentWillMount: function() {
+    // alert('switching to reviewPage view');
+  },
+
+  // listens to reviewStore
+  mixins: [Reflux.connect(reviewStore)],
 
   render: function(){
-    console.log(this.state.reviews);
-    //creates component for each review and loads them into the array reviewGroup
-     var reviewGroup = this.state.reviews.map(function(singleReview) {
-      return (<div><Review reviewInfo={singleReview} /></div>);
+    // creates component for each review and renders them
+     var reviews = this.state.reviews.map(function(review) {
+      return (<div><Review review={review} /></div>);
      });
-     console.log(reviewGroup);
+
     return (
       <div>
         <p>Reviews</p>
-        <div>{reviewGroup}</div>
+        <div>{reviews}</div>
       </div>
     )
   }
 });
 
-module.exports = ReviewPage;
+module.exports = Reviews;
