@@ -60,6 +60,7 @@ $(document).ready(function(){
 	  <Route name="app" path="/" handler={APP}>
 	  	<DefaultRoute name="search" handler={Search}/> /* This is the active route at path "/" */
 	  	<Route name="profile" path="/profile" handler={Profile}/>
+	  	<Route name="items" path="/items" handler={Items}/>
 	  	<Route name="notifications" path="/notifications" handler={Notifications}/>
 	  	<Route name="reviews" path="/reviews" handler={ReviewPage}/>
 	  	<Route name="messages" path="/messages" handler={Messaging}/>
