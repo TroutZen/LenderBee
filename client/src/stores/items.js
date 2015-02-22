@@ -19,23 +19,41 @@ var itemStore = Reflux.createStore({
 
 	/* Fetches Items from api endpoint */
 	fetchItems: function(){
-		console.log('/api/items/user/1')
-		console.log(makeUrl(api.items.fetch, {user: 1}));
+		
 		request.get(makeUrl(api.items.fetch, {user: 1}), function(err, res){
 			if ( err ) {
 				console.err('Error trying to get item information for user', err);
 			}
 			else {
 				console.log('items', res.body);
-				// this.filterItems(res.items);
+				this.filterItems(res.body);
 			}
-		});	
+		}.bind(this));	
 	},
 
 	/* Filters Items into lent, borrowed, inventory */
 	filterItems: function(items){
 		/* Items is an array of item objects */
+		// console.log(items);
 		var filteredItems = {};
+		var userId = userStore.getProp('user-id');
+		items.forEach(function(item){
+			/* if the item's lender_id is the same as the current user */
+			if (userId === item.lender_id) {
+				if (item.borrowed) {
+					filteredItems.lent = filteredItems.lent || [];
+					filteredItems.lent.push(item);
+				} else {
+					filteredItems.inventory = filteredItems.inventory || [];
+					filteredItems.inventory.push(item);
+				}
+			}
+			else if (userId === item.borrower_id) {
+				filteredItems.borrowed = filteredItems.borrowed || [];
+				filteredItems.borrowed.push(item);
+			}
+		});
+
 		this.items = filteredItems;
 		this.trigger(this.items);
 	},

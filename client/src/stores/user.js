@@ -7,9 +7,19 @@ var userStore = Reflux.createStore({
 
 	},
 
+	// TODO: This is currently hard-coded and needs to be updated to be dynamic based on login/auth
+	user_id: 1,
+	
+	getProp: function(prop) {
+		return this.hasOwnProperty(prop) ? this.prop : null;
+	},
+
 	getInitialState: function() {
-		return {};
+		return this.user_id;
 	}
+
+	
+
 });
 
 module.exports = userStore;

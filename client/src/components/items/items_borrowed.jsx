@@ -4,7 +4,13 @@ var Items_borrowed = React.createClass({
 
 	render: function() {
 		return (
-			<div />
+			<div>
+				{/* I want to be able to show lender information including avatar and name, so we need our endpoint to also fetch user data */}
+				<span>{this.props.item.title}</span>
+				<span>{this.props.item.description}</span>
+				<span>{this.props.item.pollenprice}</span>
+				<span>{this.props.item.lender_id}</span>
+			</div>
 		);
 	}
 
