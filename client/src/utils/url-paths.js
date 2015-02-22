@@ -14,7 +14,7 @@ api.user = {
 api.items = {
 	create: '/api/items/:user',
 	search: '/api/items/:title',
-	fetch: '/api/items/:user'
+	fetch: '/api/items/user/:user'
 };
 
 api.messages = {

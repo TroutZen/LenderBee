@@ -16,13 +16,14 @@ var Reviews = React.createClass({
   render: function(){
     // creates component for each review and renders them
      var reviews = this.state.reviews.map(function(review) {
-      return (<div><Review review={review} /></div>);
+      console.log(review);
+      return <Review reviewData={review} />;
      });
 
     return (
       <div>
         <p>Reviews</p>
-        <div>{reviews}</div>
+        {reviews}
       </div>
     )
   }
