@@ -1,23 +1,24 @@
 $(document).ready(function(){
 
 	var React 			 = require('react');
+	
 	/* Router Dependencies */
 	var Router 			 = require('react-router');
 	var Route  			 = Router.Route;
 	var RouteHandler = Router.RouteHandler;
 	var DefaultRoute = Router.DefaultRoute;
+	
 	/* Components */
-	var Search 			 = require('./components/search/Search.react.jsx');
-	var Profile 		 = require('./components/profile/Profile.react.jsx');
-	var TopBar			 = require('./components/app/TopBar.react.jsx');
-	var SideNavBar	 = require('./components/app/sideNavBar.react.jsx');
-	// var History      = require('./components/history/History.react.jsx');
+	var Search 			 	= require('./components/search/Search.react.jsx');
+	var Profile 		 	= require('./components/profile/Profile.react.jsx');
+	var TopBar			 	= require('./components/app/TopBar.react.jsx');
+	var SideNavBar	 	= require('./components/app/sideNavBar.react.jsx');
 	var Notifications = require('./components/notifications/Notifications.react.jsx');
-	var ReviewPage = require('./components/review/reviewPage.react.jsx');
-	var Messaging = require('./components/messagingUsers.react.jsx');
-	var Message = require('./components/messaging.react.jsx');
-	var PostItem = require('./components/postPage.react.jsx');
-
+	var ReviewPage 		= require('./components/review/reviewPage.react.jsx');
+	var Messaging 		= require('./components/messagingUsers.react.jsx');
+	var Message 			= require('./components/messaging.react.jsx');
+	var PostItem 			= require('./components/postPage.react.jsx');
+	var Items 				= require('./components/items/items.jsx');
 
 
 	/* Defines Top Level App Component */

@@ -21,8 +21,8 @@ var reviews = React.createClass({
   render: function(){
     return (
       <div>
-        <p>{this.props.review._id}</p> {/* How do we get the user name for the reviewer? */}
-        <div>{this.props.review.message}</div>
+        <p>{this.props.reviewData._id}</p> {/* How do we get the user name for the reviewer?   */}
+        <div>{this.props.reviewData.message}</div>
       </div>
     )
   }
