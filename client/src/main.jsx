@@ -19,6 +19,7 @@ $(document).ready(function(){
 	var Message 			= require('./components/messaging.react.jsx');
 	var PostItem 			= require('./components/postPage.react.jsx');
 	var Items 				= require('./components/items/items.jsx');
+	var Map						= require('./components/map/map.jsx');
 
 
 	/* Defines Top Level App Component */
