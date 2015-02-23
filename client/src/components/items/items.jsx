@@ -26,6 +26,7 @@ var Items = React.createClass({
 	},
 
 	updateItems: function(items){
+		// console.log('updating items to:', items);
 		/* items will be an object which exposes items.lent, items.borrowed, items.inventory */
 		this.setState({
 			items: items
@@ -43,19 +44,28 @@ var Items = React.createClass({
 
 	render: function() {
 		var items;
-		console.log(this.state);
+		// console.log('items component state', this.state);
 		if (this.state.items) {
+			// console.log('items rendered with', this.state.items);
 			/* BUG: This is incorrect, I need to use map and I need to map over an object not an array */
-			items = this.state.items.forEach(function(item) {
-				return (
-						<div>
-							<Borrowed item={item}/>
-							<Lent item={item}/>
-							<Inventory item={item}/>
-						</div>	
-					);
+			items = _.map(this.state.items, function(item, key) {
+				// console.log('map', item);
+				var ItemCategory;
+
+				if (key === 'borrowed') {
+					// console.log('item borrowed', item);
+					ItemCategory = <Borrowed item={item}/>;
+				} 
+				else if ( key === 'lent' ) {
+					ItemCategory = <Lent item={item}/>;
+				} 
+				else if ( key === 'inventory') {
+					ItemCategory = <Inventory item={item}/>;
+				}
+				return ItemCategory;
 			}); 			
 		}
+
 		return (
 			<div>
 				{items}
