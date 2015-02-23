@@ -36,7 +36,8 @@ var itemStore = Reflux.createStore({
 		/* Items is an array of item objects */
 		// console.log(items);
 		var filteredItems = {};
-		var userId = userStore.getProp('user-id');
+		var userId = userStore.getProp('user_id');
+		console.log('userId', userStore.getProp('user_id'));
 		items.forEach(function(item){
 			/* if the item's lender_id is the same as the current user */
 			if (userId === item.lender_id) {
@@ -55,6 +56,7 @@ var itemStore = Reflux.createStore({
 		});
 
 		this.items = filteredItems;
+		console.log('filtered items', this.items);
 		this.trigger(this.items);
 	},
 

@@ -11,7 +11,7 @@ var userStore = Reflux.createStore({
 	user_id: 1,
 	
 	getProp: function(prop) {
-		return this.hasOwnProperty(prop) ? this.prop : null;
+		return this[prop] ? this[prop] : null;
 	},
 
 	getInitialState: function() {
