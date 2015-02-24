@@ -33,7 +33,43 @@ controller.create = function(req, res, next){
   }).catch(function(error){
     ('inside error of items create controller ', error);
   })
-}
+};
+
+controller.searchItemByCity = function(req, res, next){
+  User.find({
+    where: {
+      username: req.params.user
+    }
+  }).then(function(user){
+    Item.findAll({
+      where: {
+        city: user.city,
+        title: req.params.title
+      }
+    }).then(function(items){
+      res.json(items);
+    })
+  })
+};
+
+
+controller.getOneByUser = function(req, res, next){
+  Item.findAll({
+    where: Sequelize.or(
+      { lender_id: req.params.user },
+      { borrower_id: req.params.user }
+    )
+  }).
+  then(function(items){
+    console.log('test test test', items);
+    res.json(items);
+  }).
+  catch(function(err){
+    console.log('error attempting to get items for a user', err);
+    res.status(500).end();
+  });
+};
+
 
 // controller.getAll = function(req, res, next){
 //   var query = req.params.title;
@@ -75,22 +111,6 @@ controller.create = function(req, res, next){
 //     })
 // };
 
-  controller.searchItemByCity = function(req, res, next){
-    User.find({
-      where: {
-        username: req.params.user
-      }
-    }).then(function(user){
-      Item.findAll({
-        where: {
-          city: user.city,
-          title: req.params.title
-        }
-      }).then(function(items){
-        res.json(items);
-      })
-    })
-  }
 // controller.update = function(req, res, next){
 //  //Where we update the item to borrowed and assign it a borrower_id
 //  //the request params have a lender username
