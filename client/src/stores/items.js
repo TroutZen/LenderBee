@@ -12,6 +12,7 @@ var itemStore = Reflux.createStore({
 	init: function(){
 		// Items Store listens for the action 'initializeUser and fetches items afterwards'
 		this.listenTo(actions.fetchItems, this.fetchItems);
+		this.listenTo(actions.returnItem, this.returnItem);
 
 		// Listen for changes on the userStore so that when the user data is fetches, it will kick off the request to get items
 		// this.listenTo(userStore, this.getItems);
@@ -29,6 +30,14 @@ var itemStore = Reflux.createStore({
 				this.filterItems(res.body);
 			}
 		}.bind(this));	
+	},
+
+	returnItem: function(){
+		// [Note] ReturnItem Needs to do the following:
+			// make a put request to server which updates the item record with the following:
+					// borrowed set to false
+					// sets borrower_id to null
+			// 
 	},
 
 	/* Filters Items into lent, borrowed, inventory */

@@ -32,11 +32,27 @@ var notificationStore = Reflux.createStore({
 	},
 
 	// this will be asynchronous, how do we handle this?
-	getNotifications: function(){
-		request.get('/api/some-endpoint', function(res){
-			// store this data in the store's state somehow
-		});
+	onFetchNotifications: function(){
+		// request.get('/api/some-endpoint', function(res){
+		// 	// store this data in the store's state somehow
+		// });
 	},
+
+	onAcceptRequestToBorrow: function(){
+		// Item gets updated with borrower_id
+		// Borrower gets notification that item has been accepted
+		// Increase BeeBucks by item amount for lender, decrease Beebucks by item amount for lender (Only write to DB if both succeed)
+		// [Confirm] Item should now be in borrowers borrowed items
+		// [Confirm] Item should now be in lenders lent items 
+	},
+
+	onDeclineRequestToBorrow: function(){
+		// Should send notification to borrower their request has been declined
+			// On Success:
+				// Should change state of notification to rejected
+				// Client side logic should check if accepted or rejected (if rejected do some css)
+	},
+
 
 	getInitialState: function() {
 		return {

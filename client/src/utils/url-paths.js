@@ -15,6 +15,7 @@ api.items = {
 	create: '/api/items/:user',
 	search: '/api/items/:title',
 	fetch: '/api/items/user/:user'
+	// 'return': '/api/items'
 };
 
 api.messages = {
@@ -23,7 +24,7 @@ api.messages = {
 };
 
 api.reviews = {
-
+	fetchOutstandingReviews: '/api/reviews/user/:user'
 };
 
 api.notifications = {

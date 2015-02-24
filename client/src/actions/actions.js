@@ -22,7 +22,20 @@ var actions = Reflux.createActions([
   "conversationCalled",
 
   /* Items API */
-  "fetchItems"
+  "fetchItems",
+  "returnItem",
+
+  /* Notifications API */
+  "acceptRequestToBorrow",
+  "declineRequestToBorrow",
+  "fetchNotifications",
+
+  /* Reviews API */
+  "fetchPendingReviews"
+  
+  
+
+
 ]);
 
 module.exports = actions;
