@@ -10,6 +10,7 @@ var singleItem = React.createClass({
   mixins: [Reflux.connect(singleItemStore), Router.Navigation],
 
   handleItemRequest: function() {
+    // TODO: Make this not hard-coded
     actions.itemRequestSubmitted(this.state.item.name, "samin");
   },
 

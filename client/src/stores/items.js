@@ -32,12 +32,39 @@ var itemStore = Reflux.createStore({
 		}.bind(this));	
 	},
 
-	returnItem: function(){
+	// [How] Do we pass in the itemsId?
+	// [Refactor] Could use promises to make this more modular or use next pattern
+	returnItem: function(itemsId, lender_id, borrower_id){
+		request.put(makeUrl(api.items.update, {itemsId: itemsId}), function(err, res){
+			if(err){
+				console.error('[error] returning item');
+			} else {
+				this.createReviews(lender_id, borrower_id, itemsId);
+			}
+		}.bind(this));
 		// [Note] ReturnItem Needs to do the following:
 			// make a put request to server which updates the item record with the following:
 					// borrowed set to false
 					// sets borrower_id to null
-			// 
+			// On sucess of updating the item record, we need to generate two reviews for lender and borrower
+	},
+
+	// [Note] create reviews will generate two new review records for lender and borrower with content and rating set to null
+	// [Refactor] This should maybe go on the reviews store since it has to do with reviews and just mixin the methods here?
+	createReviews: function(lender_id, borrower_id, itemsId){
+		var ctx = this;
+		// [Note] make a post request to the server, creating two new reviews
+		request.post(makeUrl(api.reviews.createPending, {lender_id: lender_id, borrower_id, borrower_id}))
+			.set('Content-Type', 'application/json')
+			.send({item_id: itemsId})
+			.end(function(err, res){
+				if(err) {console.err('error creating reviews', err);}
+				else {
+					// [Note] on success, fetch the items again to update the items view for the lender
+					console.log('successfully created reviews', res);
+					ctx.fetchItems();
+				}
+			});
 	},
 
 	/* Filters Items into lent, borrowed, inventory */

@@ -54,6 +54,7 @@ controller.searchItemByCity = function(req, res, next){
 
 
 controller.getOneByUser = function(req, res, next){
+  console.log('fetching items for user --------', req.params.user);
   Item.findAll({
     where: Sequelize.or(
       { lender_id: req.params.user },

@@ -9,19 +9,21 @@ var LentItem = React.createClass({
 					// borrowed set to false
 					// sets borrower_id to null
 			//  
-	returnItem: function(){
-		actions.returnItem();
+	returnItem: function(lender_id, borrower_id, item_id){
+		// [Refactor] actions.returnItem.apply(this, Array.prototype.slice.call(arguments))
+		actions.returnItem(lender_id, borrower_id, item_id);
 	},
 
+	// TODO: I want to be able to show lender information including avatar and name, so we need our endpoint to also fetch user data 
 	render: function() {
 		return (
 			<div>
 				<h5>Lent Item</h5>
-				{/* I want to be able to show lender information including avatar and name, so we need our endpoint to also fetch user data */}
 				<p>{this.props.item.title}</p>
 				<p>{this.props.item.description}</p>
 				<p>{this.props.item.pollenprice}</p>
 				<p>{this.props.item.borrower_id}</p>
+				{/* [Warning] somehow we need to pass props to this.returnItem using bind, not sure how to handle with jsx*/}
 				<button onClick={this.returnItem}>Item Was Returned</button>
 			</div>
 		);
