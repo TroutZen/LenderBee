@@ -36,7 +36,7 @@ var path = {
 
 // [Note] Login Paths for Gulp Tasks
 path.login = {
-  HTML: 'client/login/index.html'
+  HTML: 'client/login/index.html',
   OUT: 'login.js',
   DEST: 'client/login/dist',
   ENTRY_POINT: '.client/login/main.jsx'
@@ -68,6 +68,7 @@ gulp.task('clean-npm', function(){
 });
 
 // Watches for changes and rebuilds production files
+// [Warning] We need to figure out how to do this for our login's index.html
 gulp.task('watch', function() {
   gulp.watch(path.HTML, ['copy']);
   gulp.watch(path.LESS_WATCH, ['less']); // [Refactor] I think we can get rid of this task

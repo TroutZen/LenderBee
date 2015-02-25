@@ -1,19 +1,20 @@
-var bodyParser = require('body-parser');
-var logger = require('morgan');
-var path = require('path');
-var users = require('./users/controller.js');
-var items = require('./items/controller.js');
+var bodyParser 			 = require('body-parser');
+var logger 					 = require('morgan');
+var path 						 = require('path');
+var users 					 = require('./users/controller.js');
+var items 					 = require('./items/controller.js');
 // var notifications = require('./notifications/controller.js');
-var messages = require('./messages/controller.js');
-var notifications= require('./notifications/controller.js');
-var reviews = require('./reviews/controller.js');
+var messages 				 = require('./messages/controller.js');
+var notifications		 = require('./notifications/controller.js');
+var reviews 				 = require('./reviews/controller.js');
 
 /* Facebook Auth */
+var passport 				 = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var session					 = require('session');
+var session					 = require('express-session');
 var cookieParser		 = require('cookie-parser');
 var methodOverride 	 = require('method-override');
-var fb 							 = require('./ApiKeysFB.js');
+var fb 							 = require('./.ApiKeysFB.js');
 
 
 
@@ -35,7 +36,9 @@ module.exports = function(app, express){
 	/* Initialize Passport */
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(express.static(path.join(__dirname, '../client')));
+
+
+	// app.use(express.static(path.join(__dirname, '../client')));
 
 
 
@@ -44,7 +47,7 @@ module.exports = function(app, express){
 	=====================================================*/
 	passport.use(new FacebookStrategy({
 			clientID: fb.FACEBOOK_APP_ID,
-			clientSecret: FACEBOOK_APP_SECRET,
+			clientSecret: fb.FACEBOOK_APP_SECRET,
 			callbackURL: "http://localhost:3000/auth/facebook/callback"
 		},
 		function(accessToken, refreshToken, profile, done) {
@@ -79,12 +82,16 @@ module.exports = function(app, express){
 	app.get('/', ensureAuthenticated, function(req, res){
 		// [Warning] Don't we want this to point to the dist folder? (for deployment)
 		// TODO: somehow we need to be able to send back the user data and note that it is attached to the request object
-		res.render('../client/login/dist/index.html', {user: req.user});
+		console.log('--------------------------- root route');
+		// res.render('../client/index.html', {user: req.user});
+		res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 	});
 
 	app.get('/login', function(req, res){
+		console.log('attempts to render login page---------------');
 		// TODO: we want this to render an html with react components for logging in
-		res.render('../client/static/login/index.html');
+		// res.render('../client/login/index.html');
+		res.sendFile(path.join(__dirname, '../client/login/index.html'));
 	});
 
 	app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
@@ -101,6 +108,7 @@ module.exports = function(app, express){
 	  });
 
 	function ensureAuthenticated(req, res, next) {
+		console.log('ensureAuthenticated Called -------------');
   	if(req.isAuthenticated()) {return next();}
   	res.redirect('/login');
   };
