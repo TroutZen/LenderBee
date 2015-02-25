@@ -79,7 +79,7 @@ module.exports = function(app, express){
 	app.get('/', ensureAuthenticated, function(req, res){
 		// [Warning] Don't we want this to point to the dist folder? (for deployment)
 		// TODO: somehow we need to be able to send back the user data and note that it is attached to the request object
-		res.render('../client/index.html', {user: req.user});
+		res.render('../client/login/dist/index.html', {user: req.user});
 	});
 
 	app.get('/login', function(req, res){
@@ -93,11 +93,23 @@ module.exports = function(app, express){
 			res.redirect('/');
 		});
 
+	app.get('/auth/facebook',
+	  passport.authenticate('facebook'),
+	  function(req, res){
+	    // The request will be redirected to Facebook for authentication, so this
+	    // function will not be called.
+	  });
+
+	function ensureAuthenticated(req, res, next) {
+  	if(req.isAuthenticated()) {return next();}
+  	res.redirect('/login');
+  };
+
 	// [Note] Not sure how we will handle logging out yet...don't want a seperate static file
-	app.get('/logout', function(req, res){
-	  req.logout();
-	  res.redirect('/');
-	});
+	// app.get('/logout', function(req, res){
+	//   req.logout();
+	//   res.redirect('/');
+	// });
 
 
 
@@ -128,9 +140,4 @@ module.exports = function(app, express){
   // app.get('/api/notifications/:user/:item', notifications.getByUser);
 
   /*-----  End of Routes  ------*/
-
-  function ensureAuthenticated(req, res, next) {
-  	if(req.isAuthenticated()) {return next();}
-  	res.redirect('/login');
-  }
 };
