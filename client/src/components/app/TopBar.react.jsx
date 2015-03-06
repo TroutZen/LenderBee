@@ -18,12 +18,27 @@ var TopBar = React.createClass({
       //   <div className="item">
       //   </div>          
       // </div>
+      // <i className="align justify icon large" onClick={this.props.toggleSideNavBar}></i>     
 
   render: function() {
+    var imgStyle = {
+      width: "25px",
+      height: "25px",
+      display: "inline-block"
+    };
+
+    var beeStyle = {
+      display: "inline-block"
+    };
+
+    var topbarPadding = {
+      padding: "0.5em"
+    }
 
     return (
-      <div id="topbar" className="ui segment">
-        <i className="align justify icon large" onClick={this.props.toggleSideNavBar}></i>     
+      <div style={topbarPadding} id="topbar" className="ui segment">
+        <img style={imgStyle} className="ui mini image" src="/dist/assets/hivebar.png" onClick={this.props.toggleSideNavBar}></img>
+        <img style={beeStyle} className="ui tiny image" src="/dist/assets/bee_transparent.png"></img>
       </div>
     );
   }
