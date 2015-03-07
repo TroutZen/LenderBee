@@ -65,8 +65,13 @@ var AllItemsBorrowed = React.createClass({
 		});
 
 		return (
-			<div className="ui stackable four column grid">
-				{borrowedItems}
+			<div>
+				<h1 className="ui horizontal header divider">
+					Borrowed
+				</h1>
+				<div className="ui stackable four column grid">
+						{borrowedItems}
+				</div>
 			</div>
 		);
 	}
