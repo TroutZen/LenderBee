@@ -33,7 +33,7 @@ var ItemBorrowed = React.createClass({
 				<div className="column">
 					<div className="ui segment">
 						<div>
-							<img className="ui fluid image" src={this.props.item.imageurl}></img>
+							<img className="ui fluid image crop" src={this.props.item.imageurl}></img>
 							<div style={elementStyle}>
 								<div>
 									<i className="tiny user icon"></i>
@@ -49,6 +49,7 @@ var ItemBorrowed = React.createClass({
 				</div>
 		);
 	}
+
 });
 
 
@@ -69,7 +70,7 @@ var AllItemsBorrowed = React.createClass({
 				<h1 className="ui horizontal header divider">
 					Borrowed
 				</h1>
-				<div className="ui stackable four column grid">
+				<div className="ui center aligned stackable four column grid">
 						{borrowedItems}
 				</div>
 			</div>

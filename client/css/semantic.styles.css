@@ -50,6 +50,11 @@ div.searchBar {
   object-fit: cover;
 }
 
+.ui.fluid.image.crop {
+  height: 200px;
+  object-fit: cover;
+}
+
 .ui.tiny.image {
   opacity: 1;
 }
