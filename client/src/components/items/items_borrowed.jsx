@@ -37,24 +37,28 @@ var ItemBorrowed = React.createClass({
 			left: "0"
 		};
 
+		var lender = this.props.item.lender;
+
 		return (
 			<div className="column">
 				<div className="ui center aligned segment">
-					<div style={relativeStyle}>
+					<div>
 						<img className="ui bordered rounded medium image" src={this.props.item.imageurl}></img>
-						<div className="ui left aligned small segment">
-							<div style={absolute} style={topleft}>					
-								<i className="circular gift icon"></i>
+							<div>					
+								<i className="circular tiny gift icon"></i>
 								<span>{this.props.item.title}</span>
+								<i className="circular tiny money icon"></i>
+								<span>{this.props.item.beebucks}</span>
+								<i className="circular tiny user icon"></i>
+								<span>{lender.firstname + " " +lender.lastname}</span>
 							</div>
-							<span>Description: {this.props.item.description}</span>
-							<i className="circular money icon"></i>
-							<span>{this.props.item.beebucks}</span>
-							<span>Lender: {this.props.item.lender_id}</span>
+							<div>
+								<i className="quote tiny left icon"></i>
+								<span>Description: {this.props.item.description}</span>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 		);
 	}
 });
