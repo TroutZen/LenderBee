@@ -19,12 +19,12 @@ var ItemBorrowed = React.createClass({
 
 		var elementStyle = {
 		  position: "absolute",
-		  bottom: "27%",
+		  bottom: "10%",
 		  textAlign: "left",
 		  left: "7%",
 		  color: "white",
 		  backgroundColor: "black",
-		  opacity: "0.4",
+		  opacity: "0.75",
 		  padding: "2%",
 		  borderRadius: "5px"
 		};
@@ -45,11 +45,6 @@ var ItemBorrowed = React.createClass({
 								</div>
 							</div>
 						</div>	
-						<div className="ui message" style={beeColor}>
-							<i className="quote tiny left icon"></i>
-							<span>{this.props.item.description}</span>
-							<i className="quote tiny right icon"></i>	
-						</div>
 					</div>
 				</div>
 		);
