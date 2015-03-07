@@ -22,23 +22,34 @@ var TopBar = React.createClass({
 
   render: function() {
     var imgStyle = {
-      width: "25px",
-      height: "25px",
-      display: "inline-block"
+      width: "22px",
+      height: "22px",
+      display: "inline-block",
     };
 
     var beeStyle = {
-      display: "inline-block"
+      display: "inline-block",
     };
 
     var topbarPadding = {
       padding: "0.5em"
-    }
+    };
+
+    var titleStyle = {
+      paddingTop: "3px",
+      fontFamily: 'Pacifico',
+      fontSize: "18px"
+    };
 
     return (
       <div style={topbarPadding} id="topbar" className="ui segment">
-        <img style={imgStyle} className="ui mini image" src="/dist/assets/hivebar.png" onClick={this.props.toggleSideNavBar}></img>
-        <img style={beeStyle} className="ui tiny image" src="/dist/assets/bee_transparent.png"></img>
+        <div className="alignleft">
+          <img style={imgStyle} className="ui mini image" src="/dist/assets/hivebar.png" onClick={this.props.toggleSideNavBar}></img>
+          <img style={beeStyle} className="ui tiny image" src="/dist/assets/bee_transparent.png"></img>
+        </div>  
+        <div>
+          <span style={titleStyle} className="aligncenter">LenderBee</span>
+        </div>
       </div>
     );
   }

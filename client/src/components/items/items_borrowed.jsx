@@ -2,7 +2,13 @@ var React = require('react');
 var _			= require('lodash');
 
 var ItemBorrowed = React.createClass({
+
 	render: function(){
+
+		var inlineBlock = {
+			display: "inline-block"
+		};
+
 		return (
 			<div className="ui vertical segment">
 				{/* I want to be able to show lender information including avatar and name, so we need our endpoint to also fetch user data */}
@@ -18,6 +24,7 @@ var ItemBorrowed = React.createClass({
 					</div>
 					<p>Lender: {this.props.item.lender_id}</p>
 				</div>
+				<img className="ui small left floated image" src={this.props.item.imageurl}></img>
 			</div>
 		);
 	}
@@ -33,7 +40,7 @@ var AllItemsBorrowed = React.createClass({
 		});
 
 		return (
-			<div className="ui center aligned segment">
+			<div className="ui left aligned segment">
 				<h2 className="ui horizontal header divider">
 			  	Currently Borrowed
 				</h2>
