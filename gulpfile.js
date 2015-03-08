@@ -35,7 +35,8 @@ var path = {
     MINIFIED_OUT: 'lenderbee.min.js',
     DEST_SRC: 'client/dist',
     DEST_BUILD: 'client/dist/build',
-    DEST: 'client/dist'
+    DEST: 'client/dist',
+    DEST_ASSETS: 'client/dist/assets'
   },
   karmaConf: __dirname + '/karma.conf.js'
 };
@@ -89,24 +90,14 @@ gulp.task('clean', function(done) {
  */
 gulp.task('javascript', ['clean'], function() {
   gulp.start('js');
-  // browserify({
-  //   entries: [path.sources.ENTRY_POINT],
-  //   transform: [reactify]
-  // })
-  // .bundle()
-  // .pipe(source(path.dest.OUT))
-  // .pipe(streamify(uglify(path.dest.MINIFIED_OUT)))
-  // .on('error', handleError)
-  // .pipe(gulp.dest(path.dest.DEST_SRC))
-  // .pipe(notify({message: 'Build task complete'}));
 });
 
 /* Copies the html files into distribution folder 
  * Replace anything in html files? gulp.useref or html-replace (better?)
  */
 gulp.task('copy', function(){
-  gulp.src(path.sources.HTML, {base: 'client/'}).pipe(gulp.dest(path.dest.DEST)); // copies main index.html
-  // gulp.src(path.sources.html).pipe(gulp.dest(path.login.DEST)); // copies login's index.html
+  gulp.src(path.sources.HTML, {base: 'client/'}).pipe(gulp.dest(path.dest.DEST));
+  gulp.src(['client/assets/**/*']).pipe(gulp.dest(path.dest.DEST_ASSETS));
 });
 
 
