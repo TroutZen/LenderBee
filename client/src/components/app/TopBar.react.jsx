@@ -5,6 +5,7 @@ var navStore = require('../../stores/navStore');
 var SideNavBar = require('./SideNavBar.react.jsx');
 var Router = require('react-router');
 var Link = Router.Link;
+var $ = require('jQuery');
 
 var TopBar = React.createClass({
   mixins: [Reflux.connect(navStore)],
@@ -13,14 +14,26 @@ var TopBar = React.createClass({
     actions.toggleSideNav();
   },
 
+  // [Refactor] remove interval on component unmount
+  wiggleIndefinitely: function(){
+    console.log('within wiggle function');
+    var $bee = $(this.refs.bee.getDOMNode());
+    setInterval(function(){
+      console.log('bee should be wiggling');
+      $bee.addClass('pulse');
+      $bee.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+        $bee.removeClass('pulse');
+      });
+    }, Math.random() * 10000);
+  },
 
-      // <div id="topbar" className="ui menu">
-      //   <div className="item">
-      //   </div>          
-      // </div>
-      // <i className="align justify icon large" onClick={this.props.toggleSideNavBar}></i>     
+  componentDidMount: function() {
+    console.log('topbar mounted');
+    this.wiggleIndefinitely();
+  },
 
   render: function() {
+    console.log('topbar rendered');
     var imgStyle = {
       width: "22px",
       height: "22px",
@@ -45,7 +58,7 @@ var TopBar = React.createClass({
       <div style={topbarPadding} id="topbar" className="ui segment">
         <div className="alignleft">
           <img style={imgStyle} className="ui mini image" src="/assets/hivebar.png" onClick={this.props.toggleSideNavBar}></img>
-          <img style={beeStyle} className="ui tiny image" src="/assets/bee_transparent.png"></img>
+          <img ref="bee" style={beeStyle} className="ui tiny image animated" src="/assets/bee_transparent.png"></img>
         </div>  
         <div>
           <span style={titleStyle} className="aligncenter">LenderBee</span>
