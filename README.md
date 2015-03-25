@@ -9,3 +9,5 @@ LenderBee - A reputation based borrowing and lending application
   - __Development Team Members__: Samin Sepasi, Chrystine Lee, Matthew Polland
 
 
+## Deployed Version
+[lender-bee.herokuapp.com](lender-bee.herokuapp.com)
