@@ -30,8 +30,8 @@ $(document).ready(function(){
 	var SingleItem 					= require('./components/search/singleItem.react.jsx');
 	var Reviews 						= require('./components/review/reviews.react.jsx');
 	var Login        			  = require('./components/login.react.jsx');
-	var ResultsMap = require('./components/map/resultsMap.react.jsx');
-	var SingleReview = require('./components/review/singleReview.react.jsx');
+	var ResultsMap 					= require('./components/map/resultsMap.react.jsx');
+	var SingleReview 				= require('./components/review/singleReview.react.jsx');
 
 	/* Defines Top Level App Component */
 	var APP = React.createClass({

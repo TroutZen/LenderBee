@@ -9,9 +9,7 @@ var lentStore = Reflux.createStore({
     onRequestLentPage: function() {
       var that = this;
         request("/api/items/:user", function(res){
-          //TODO: Endpoint will query DB for user
           that.data.items = JSON.parse(res.text);
-          console.log('LENT ITEMS', that.data.items)
           that.trigger(that.items);
         })
       },

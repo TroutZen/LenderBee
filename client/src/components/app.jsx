@@ -5,7 +5,6 @@ var HomePage 		= require('./HomePage.react.jsx');
 /* Defines Top Level App Component */
 var APP = React.createClass({
 	componentWillMount: function() {
-		// TO DO: fetch user data?
 	},
 
 	render: function(){

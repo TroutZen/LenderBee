@@ -7,7 +7,6 @@ var LentItem = React.createClass({
  
 
 	returnItem: function(lender_id, borrower_id, item_id){
-		console.log('attempts to return item from lent item component');
 		$('#successMessage').addClass("success");
 		actions.returnItem(lender_id, borrower_id, item_id);
 	},
@@ -17,9 +16,8 @@ var LentItem = React.createClass({
 		var lender_id = userStore.getProp('id');
 		var borrower_id = this.props.item.borrower_id;
 		var item_id = this.props.item.id;
-
 		var borrower = this.props.item.borrower;
-
+		
 		var elementStyle = {
 		  position: "absolute",
 		  bottom: "10%",
@@ -58,11 +56,6 @@ var LentItem = React.createClass({
 
 var Items_lent = React.createClass({
 
-	// <div>
-	// <h5>Lent Items</h5>
-	// 	{LentItems}
-	// </div>
-
 	render: function() {
 
 		var LentItems = _.map(this.props.item, function(item){
@@ -80,7 +73,6 @@ var Items_lent = React.createClass({
 			</div>
 		);
 	}
-
 });
 
 module.exports = Items_lent;

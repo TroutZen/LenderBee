@@ -22,16 +22,12 @@ var User = React.createClass({
         </Link>
         <div className="ui divider"></div>
         </div>
-        //onClick, call handler with this.props.partner
-        //on store, save state's current user as partner. 
-        //trigger current user.
       )
   }
 });
 
 var MessagingUsers = React.createClass({
 
-  //listens to messagingUsersStore
   mixins: [Reflux.connect(messagingUsersStore)],
 
   componentDidMount: function() {
@@ -39,10 +35,6 @@ var MessagingUsers = React.createClass({
   },
 
   render: function(){
-    //creates component for each review and loads them into the array reviewGroup
-    // var messagedUsers = this.state.conversations.map(function(conversation) {
-    //  return (<User message={conversation.message} partnerName={conversation.to.username} partnerId={conversation.to.id}/>);
-    // });
 
     var partners = this.state.partners.map(function(partner) {
       return (<div><User partnerId={partner.id} partnerName={partner.username}/></div>);

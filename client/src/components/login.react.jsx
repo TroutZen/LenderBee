@@ -1,12 +1,8 @@
-var React = require('react');
-var Reflux = require('reflux');
-//var reviewStore = require('../stores/reviewStore.js');
+var React   = require('react');
+var Reflux  = require('reflux');
 var actions = require('../actions/actions.js');
 
 var review = React.createClass({
-
-  //listens to reviewStore
-  //mixins: [Reflux.connect(reviewStore)],
 
   render: function(){
     return (

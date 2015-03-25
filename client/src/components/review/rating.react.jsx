@@ -35,8 +35,6 @@ var rating = React.createClass({
 
 	getInitialState: function() {
 		return {
-			// subject to change, but i think we need the star rating component to keep track of the reviewId so we know how to update
-			// needs to be propogated by the singleReview component
 			reviewId: this.props.data.id, 
 			max: 5,
 			hoverIndex: -1 
@@ -44,18 +42,16 @@ var rating = React.createClass({
 	},
 
 	render: function() {
-		// console.log('rating component renders with state/props', this.state, this.props);
 		var stars = [];
 		for (var i = 1; i <= this.state.max; i++) {
-			// TODO: We need to pass in the rating
 			var fill 	= i <= this.props.data.max;
 			var hover = i <= this.state.hoverIndex;
+
 			// [Note] Each star will get passed this.props.data which will come from the review component
 			// [Note] It will also get a boolean value for filler and hoverIndex and some event handlers that are passed from this component and update this components state
 			stars.push(<RatingStar fill={fill} index={i} data={this.props.data} 
 				hoverFill={hover} hover={this.hoverStar} leave={this.leaveStar} selectRating={this.selectRating} />);
 		}
-		// console.log(stars);
 		return (
 			<div className="rating">
 				{stars}

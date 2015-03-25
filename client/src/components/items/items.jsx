@@ -26,13 +26,8 @@ var Items = React.createClass({
 	},
 
 	updateItems: function(items){
-		// console.log('updating items to:', items);
-		/* items will be an object which exposes items.lent, items.borrowed, items.inventory */
 		this.setState({
 			items: items
-			// lent: items.lent,
-			// borrowed: items.borrowed,
-			// inventory: items.inventory
 		});
 	},
 
@@ -45,16 +40,11 @@ var Items = React.createClass({
 	render: function() {
 		console.log('state from within the items component', this.state);
 		var items;
-		// console.log('items component state', this.state);
-		if (this.state.items) {
-			// console.log('items rendered with', this.state.items);
-			/* BUG: This is incorrect, I need to use map and I need to map over an object not an array */
-			items = _.map(this.state.items, function(item, key) {
-				// console.log('map', key);
-				var ItemCategory;
 
+		if (this.state.items) {
+			items = _.map(this.state.items, function(item, key) {
+				var ItemCategory;
 				if (key === 'borrowed') {
-					// console.log('item borrowed', item);
 					ItemCategory = <Borrowed item={item}/>;
 				} 
 				else if ( key === 'lent' ) {
@@ -73,7 +63,6 @@ var Items = React.createClass({
 			</div>
 		);
 	}
-
 });
 
 module.exports = Items;

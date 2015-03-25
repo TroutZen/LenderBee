@@ -6,13 +6,6 @@ var ItemBorrowed = React.createClass({
 	render: function(){
 
 		var lender = this.props.item.lender;
-
-		// <i className="circular tiny gift icon bee-fill"></i>
-		// <span>{this.props.item.title}</span>
-
-		// <i className="quote tiny left icon"></i>
-		// <span>{this.props.item.description}</span>
-		// <i className="quote tiny right icon"></i>			
 		var beeColor = {
 			backgroundColor: "#FFD34E"
 		}
@@ -49,18 +42,12 @@ var ItemBorrowed = React.createClass({
 				</div>
 		);
 	}
-
 });
 
 
 var AllItemsBorrowed = React.createClass({
 
-		// <h2 className="ui horizontal header divider">
-	 //  	Currently Borrowed
-		// </h2>
-
 	render: function() {
-		// console.log('Items container with props', this.props.item);
 		var borrowedItems = _.map(this.props.item, function(item){
 			return <ItemBorrowed item={item}/>;
 		});

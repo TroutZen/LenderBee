@@ -2,13 +2,8 @@ var React = require('react');
 
 var ratingStar = React.createClass({
 
-	componentWillMount: function() {
-		// alert('stars are mounting');
-	},
-
 	hoverStar: function(){
 		// [Note] sets the rating components state property hoverIndex equal to this stars index
-		// [Note] this will cause a re-render with highlighted stars
 		this.props.hover(this.props.index);
 	},
 
@@ -19,10 +14,6 @@ var ratingStar = React.createClass({
 
 	setRating: function(){
 		this.props.data.rating = this.props.index;
-		// event.preventDefault();
-		// TODO: This should also set a state property in the review container to equal the rating they have selected
-		// TODO: Onsubmit of the actual form, it will also capture the selected rating from the rating component for the put request 
-		// this.props.data.save();
 	},
 
 	selectRating: function(){

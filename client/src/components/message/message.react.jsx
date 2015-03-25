@@ -5,11 +5,6 @@ var actions = require('./../../actions/actions.js');
 
 var message = React.createClass({
 
-  //listens to messageStore
-  // <div className="ui compact yellow inverted segment">
-      //   {this.props.fromName + ": "}{this.props.message}
-      // </div>
-
   render: function(){
     return (
       <div className="comment">

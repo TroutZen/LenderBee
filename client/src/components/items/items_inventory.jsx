@@ -19,13 +19,6 @@ var InventoryItem = React.createClass({
 		  borderRadius: "5px"
 		};
 
-		// <div>
-		// 	<p>Item: {this.props.item.title}</p>
-		// 	<p>Description: {this.props.item.description}</p>
-		// 	<p>BeeBucks: {this.props.item.beebucks}</p>
-		// 	<hr></hr>
-		// </div>
-
 		return (
 			<div className="column">
 				<div className="ui segment">
@@ -46,17 +39,11 @@ var InventoryItem = React.createClass({
 			</div>			
 		);
 	}
-
 });
 
 var Items_inventory = React.createClass({
 
 	render: function() {
-
-		// <div>
-		// <h5>Your Inventory</h5>
-		// 	{InventoryItems}
-		// </div>
 
 		var InventoryItems = _.map(this.props.item, function(item){
 			return <InventoryItem item={item}/>
@@ -73,7 +60,6 @@ var Items_inventory = React.createClass({
 			</div>
 		);
 	}
-
 });
 
 module.exports = Items_inventory;

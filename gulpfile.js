@@ -1,24 +1,18 @@
-var gulp = require('gulp');
-var karma = require('karma').server;
-// var watch = require('gulp-watch');
+var gulp        = require('gulp');
+var karma       = require('karma').server;
 var runSequence = require('run-sequence');
-var browserify = require('browserify');
-var run = require('gulp-run');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var clean = require('gulp-clean');
-var nodemon = require('gulp-nodemon');
-var watchify = require('watchify');
-var source = require('vinyl-source-stream');
-var watchify = require('watchify');
-var reactify = require('reactify');
-var buffer = require('vinyl-buffer');
-var minifyCss = require('gulp-minify-css');
-
-// [Warning] use concat instead b/c you can specify load order
-var concatCss = require('gulp-concat-css');
-
+var browserify  = require('browserify');
+var run         = require('gulp-run');
+var concat      = require('gulp-concat');
+var uglify      = require('gulp-uglify');
+var rename      = require('gulp-rename');
+var clean       = require('gulp-clean');
+var nodemon     = require('gulp-nodemon');
+var source      = require('vinyl-source-stream');
+var watchify    = require('watchify');
+var reactify    = require('reactify');
+var buffer      = require('vinyl-buffer');
+var minifyCss   = require('gulp-minify-css');
 
 var path = {
   sources: {
@@ -57,12 +51,6 @@ gulp.task('clean', function() {
     .on('error', handleError);   
 });
 
-// gulp.task('default', function () {
-//   gulp.src('assets/**/*.css')
-//     .pipe(concatCss("styles/bundle.css"))
-//     .pipe(gulp.dest('out/'));
-// });
-
 // concat and minify css
 gulp.task('css', function(){
   gulp.src(path.sources.CSS_IN_ORDER)
@@ -71,13 +59,6 @@ gulp.task('css', function(){
     .pipe(minifyCss())
     .pipe(rename('style.min.css'))
     .pipe(gulp.dest(path.dest.CSS));
-  
-    // .pipe(minifyCss())
-    // .pipe(rename('style.min.css'))
-    // .pipe(gulp.dest(path.dest.CSS))
-    // .pipe(concat('style.css'))
-    // .pipe(gulp.dest(path.dest.CSS))
-    // .pipe(gulp.dest.CSS);
 });
 
 // calls browserify task
@@ -92,7 +73,6 @@ gulp.task('copy', function(){
   gulp.src('client/login.js').pipe(gulp.dest(path.dest.JS));
   gulp.src('client/css/landing.css').pipe(gulp.dest(path.dest.CSS));
 });
-
 
 // compiles jsx --> js
 gulp.task('browserify', function() {
@@ -121,7 +101,6 @@ gulp.task('browserify', function() {
   .pipe(uglify())
   .pipe(gulp.dest(path.dest.JS));
   console.log('first build');
-
 });
 
 // starts server and restarts on change
@@ -139,11 +118,6 @@ gulp.task('nodemon', function() {
 gulp.task('server', function() {
   gulp.start('nodemon');
 });
-
-// deployment build
-// gulp.task('build', function() {
-//   runSequence('clean', 'javascript');
-// });
 
 // Default Task
 gulp.task('default', ['clean'], function(cb){

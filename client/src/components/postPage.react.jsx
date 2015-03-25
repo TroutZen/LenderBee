@@ -6,42 +6,16 @@ var actions = require('../actions/actions');
 
 var PostPage = React.createClass({
 
-  // getInitialState: function() {
-  //   return null;
-  //   // return getTodoState();
-  // },
-
   mixins: [Reflux.connect(postItemStore)],
-
-  componentDidMount: function() {
-   
-  },
-
-  componentWillUnmount: function() {
-  },
 
   handlePostSubmit: function(e) {
    e.preventDefault();
    actions.postFormSubmitted($('#itemPostTitle').val(), $('#itemPostDescription').val(), 
     $('#itemPostBeeBucks').val());
-
-   // request
-   //    .post('/api/items/christine')
-   //    .field('title', $('#itemPostTitle').val())
-   //    .field('description', $('#itemPostDescription').val())
-   //    .field('pollenprice', $('#itemPostPollenPrice').val())
-   //    .attach('photos', $('#itemPostPhotos').val())
-   //    .end(function() {
-   //      console.log('your item was successfully posted');
-   //    });
   },
 
-  /**
-   * @return {object}
-   */
   render: function() {
     return (
-      //later: plug in " + session.username + "
       <div>
       <SuccessMessage message="Item Posted!" /> 
       <div className="ui center aligned segment"><h2 className="ui horizontal header divider">Post an Item</h2></div>
@@ -73,15 +47,7 @@ var PostPage = React.createClass({
       </form>
       </div>
     );
-  },
-
-  /**
-   * Event handler for 'change' events coming from the TodoStore
-   */
-  _onChange: function() {
-    // this.setState(getTodoState());
   }
-
 });
 
 module.exports = PostPage;
