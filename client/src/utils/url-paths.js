@@ -1,14 +1,9 @@
 /* API Endpoint Urls for easier referencing */
-
-// var makeUrl = require('make-url');
-
 var api = {};
 
 api.user = {
 	signup: '/api/users/signup',
-	signin: '/api/users/signin', /* Is this what is going to fetch all the user data on app load */
-	// update: '/api/users/:username',
-	// delete: '/api/users/:username',
+	signin: '/api/users/signin',
 	fetchUserData: '/api/users/:user'
 };
 

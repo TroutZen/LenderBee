@@ -1,15 +1,17 @@
-var db = require('../db/db.js');
-var User = global.db.User;
-var Item = global.db.Item;
-var Message = global.db.Message;
+var db           = require('../db/db.js');
+var User         = global.db.User;
+var Item         = global.db.Item;
+var Message      = global.db.Message;
 var Notification = global.db.Notification;
-var controller = {};
+var controller   = {};
 
+// err handler
 var handleError = function(err, res) {
   res.status(500);
   res.send(err);
 }
 
+// creates a notification
 controller.create = function(req, res, next){
   var itemId = req.params.itemId;
   var borrowerId = req.params.borrowerId;
@@ -25,11 +27,7 @@ controller.create = function(req, res, next){
   });
 };
 
-/* getByUser
- * This gets all items and the users that 
- * have requested the items owned by the 
- * user logged in.
- */
+// gets borrower in and item information related to notifications owned by user
 controller.getByUser = function(req, res, next){
   var userId = req.params.userId;
 
@@ -48,9 +46,9 @@ controller.getByUser = function(req, res, next){
 };
 
 
+// accepts the request, makes the beebucks transaction
 controller.acceptRequest = function(req, res, next){//This should delete all notifications related to the item
   var borrowerId = req.params.borrower;
-  //check the cost of an item first
   var cost = 0;
   var bank = 0;
   var lender;
@@ -61,13 +59,11 @@ controller.acceptRequest = function(req, res, next){//This should delete all not
   }).then(function(item){
     lender = item.lender_id;
     cost = item.beebucks;
-    console.log('this is the cost        ', cost);
     User.find({
       where: {
         id: borrowerId
       }
     }).then(function(user){
-      console.log('This is the user beebucks      ', user.beebucks);
       bank = user.beebucks;
       if(user.beebucks >= cost){
         Notification.destroy({
@@ -107,11 +103,10 @@ controller.acceptRequest = function(req, res, next){//This should delete all not
       }
     })
   })
-
 }
 
+// reject the request from a single user
 controller.rejectRequest = function(req, res, next){
-  //reject the request from a single user
   Notification.destroy({
     where: {
       itemreq_id: req.params.item,
@@ -120,8 +115,6 @@ controller.rejectRequest = function(req, res, next){
   }).then(function(){
     res.send('a particular users request for an item has been removed from the notificiations')
   })
-  
 }
  
-
 module.exports = controller;

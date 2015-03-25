@@ -33,12 +33,7 @@ if (!global.hasOwnProperty('db')) {
   Review.belongsTo(User, {as: 'reviewer', foreignKey: 'reviewer_id'});
   Review.belongsTo(Item, {as: 'item', foreignKey: 'item_id'});
 
-  // Notification.belongsTo(User, {as: 'user'});
-
-
   
-  // add foreign key for user -> review (rater)
-  // add foreign key for user -> review (ratee)
   Object.keys(global.db).forEach(function(modelName) {
     if ('associate' in global.db[modelName]) {
       global.db[modelName].associate(global.db);

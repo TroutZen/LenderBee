@@ -1,12 +1,6 @@
 $(function() {
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       $.ajax({
@@ -15,9 +9,7 @@ $(function() {
         data: response,
         dataType: 'json',
         success: function(response){
-          console.log("response is: ", response);
           if(response==="outside"){
-            console.log("LOLJK", response);
             $(".loginButton").hide();
             $(".signup").show();
           }else{
@@ -51,22 +43,18 @@ $(function() {
   FB.init({
     appId      : 1568513570056402,
     cookie     : true,  // enable cookies to allow the server to access 
-    session    :true,                // the session
+    session    :true,   // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.1' // use version 2.1
   });
   FB.Event.subscribe('auth.login', function(resp) {
-    //window.location = '/';
-    console.log("BLARG: ", resp);
     $.ajax({
       type: "get",
       url: "/api/users/test",
       data: resp,
       dataType: 'json',
       success: function(resp){
-        console.log("response is: ", resp);
         if(resp==="outside"){
-          console.log("LOLJK", resp);
           $(".loginButton").hide();
           $(".signup").show();
         }else{
@@ -87,7 +75,6 @@ $(function() {
   //    your app or not.
   //
   // These three cases are handled in the callback function.
-
     $('.fb-login-button').on('click', function() {
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
@@ -106,11 +93,8 @@ $(function() {
   }(document, 'script', 'facebook-jssdk'));
 
   // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
@@ -123,7 +107,6 @@ $(function() {
     locInfo.state = $("#state").val();
     locInfo.country = $("#country").val();
     locInfo.zip = $("#zip").val();
-    console.log("info: ",locInfo);
     $.ajax({
       type: "POST",
       url: "/api/users/loc",
@@ -133,7 +116,6 @@ $(function() {
         window.location = '/';
       }
     });
-    //window.location = '/';
   });
 
   $(".signup").hide();

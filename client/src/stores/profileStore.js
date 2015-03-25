@@ -24,7 +24,6 @@ var profileStore = Reflux.createStore({
 
   // [Note] listens for triggers from userStore and updates it's own state
   updateUserData: function(user){
-    // console.log("profile store just updated its user data ", user);
     this.data.user = user;
     this.trigger(this.data);
   },
@@ -44,12 +43,9 @@ var profileStore = Reflux.createStore({
     }.bind(this));
   },
 
-  //sets the state to the item data
-  // does this even do anything from the store???? dunno.....
   getInitialState: function(){
     return this.data;
   }
-
 })
 
 module.exports = profileStore;

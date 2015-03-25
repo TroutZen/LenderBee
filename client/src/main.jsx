@@ -25,7 +25,6 @@ $(document).ready(function(){
 	var ReviewPage 					= require('./components/review/reviewPage.react.jsx');
 	var PostItem 						= require('./components/postPage.react.jsx');
 	var Items 							= require('./components/items/items.jsx');
-	// var Map									= require('./components/map/map.react.jsx');
 	var SingleConversation 	= require('./components/message/SingleConversation.react.jsx');
 	var SearchResults 			= require('./components/search/SearchResults.react.jsx');
 	var SingleItem 					= require('./components/search/singleItem.react.jsx');
@@ -77,60 +76,6 @@ $(document).ready(function(){
 				);
 		}
 	});
-
-	// var Main = React.createClass({
-	// 	mixins: [Reflux.connect(mainStore)],
-
-	// 	componentWillMount: function(){
-
-	// 	},
-
-	// 	// componentDidMount: function(){
-	// 	// 	var socket = io.connect();
-	// 	// 	console.log("SOCKET: ", socket);
-	// 	// 	socket.on("userLoad", function(data){
-	// 	// 		console.log("ALMIGHTY DATA: ");
-	// 	// 		console.log(data);
-	// 	// 	});
-
-	// 	// },
-
-	// 	render: function(){
-	// 		// var socket = io.connect();
-	// 		// console.log("SOCKET: ", socket);
-	// 		// socket.on("userLoad", function(data){
-	// 		// 	console.log("ALMIGHTY DATA: ");
-	// 		// 	console.log(data);
-	// 		// });
-
-	// 		// $.ajax({
-	// 		//   type: "GET",
-	// 		//   url: "/api/currentuser",
-	// 		//   data: response,
-	// 		//   dataType: 'json'
-	// 		// });
-
-	// 		// var state = <Login />;
-	// 		// FB.getLoginStatus(function(response) {
-	// 		//   if (response.status === 'connected') {
-	// 		//   	console.log("butt");
-	// 		//     //var state = <APP />;
-	// 		//   }
-	// 		// });
-	// 		if(!this.state.loggedIn){		
-	// 			if(true){ //if user is logged in	
-	// 		  	actions.loginToggle(true);
-	// 			} 
-	// 		}
-	// 		return (
-	// 			<div>{this.state.loggedIn ? <APP /> : <Login />}</div>
-	// 			)
-	// 	}
-	// });
-
-	/*<Route name="items-borrowed" path="user/user_id/items-borrowed" handler={Borrowed}/>*/
-	/*<Route name="items-lent" path="user/user_id/items-lent" handler={Lent}/>*/
-	/*<Route name="history" path="/history" handler={History}/>*/
 
 	var routes = (
 	    <Route name="app" path="/" handler={APP}>

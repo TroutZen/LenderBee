@@ -1,8 +1,8 @@
 #body-content {
-  /*padding: 5em;*/
   font-family: Lato, sans-serif;
 }
-/*cover photo*/
+
+
 .ui.segment.cover {
   background-color: #FFD34E;
 }
@@ -13,11 +13,8 @@
   position: float;
   height: 50vh;
   width: 100vw;
-  /*background-color: #ffd34e;*/
-  /*background: white url('assets/bgimage.jpg');*/
-  /*opacity: 0.5;*/
-  /*background-size: cover;*/
 }
+
 #lenderbee {
   font-family: 'Pacifico';
   text-align: center;
@@ -29,18 +26,18 @@
   right: 0;
   top: 13vh;
   color: #2c2c2c;
-  /*-webkit-text-stroke: 1px black;*/
 }
+
 #tagline {
   color: #2c2c2c;
   font-family: Lato, sans-serif;
 }
+
 .login {
   float: right;
   display: inline;
 }
 
-/*body*/
 .techused {
   margin-top: 2em;
 }

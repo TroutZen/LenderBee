@@ -20,9 +20,9 @@ var TopBar = React.createClass({
     var $bee = $(this.refs.bee.getDOMNode());
     setInterval(function(){
       console.log('bee should be wiggling');
-      $bee.addClass('pulse');
+      $bee.addClass('tada');
       $bee.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-        $bee.removeClass('pulse');
+        $bee.removeClass('tada');
       });
     }, Math.random() * 10000);
   },

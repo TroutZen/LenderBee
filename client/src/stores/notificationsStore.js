@@ -18,7 +18,6 @@ var notificationStore = Reflux.createStore({
 	onGetNotifications: function(){
 		var userId = userStore.getProp('id');
 		request(makeUrl(api.notifications.getNotifications, {user: userId}), function(res) {
-			console.log('these are the notifications', res.body);
 			this.data.notifications = res.body
 			this.trigger(this.data);
 		}.bind(this));
@@ -51,6 +50,5 @@ var notificationStore = Reflux.createStore({
         return this.data;
     }
 });
-
 
 module.exports = notificationStore;

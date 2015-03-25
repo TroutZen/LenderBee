@@ -1,7 +1,7 @@
-var React = require('react');
-var Reflux = require('reflux');
-var request = require('superagent');
-var actions = require('../actions/actions.js');
+var React     = require('react');
+var Reflux    = require('reflux');
+var request   = require('superagent');
+var actions   = require('../actions/actions.js');
 var userStore = require('./user.js');
 var api       = require('../utils/url-paths');
 var makeUrl   = require('make-url');
@@ -37,7 +37,6 @@ var messagingUsersStore = Reflux.createStore({
           that.data.partners.push(conversation.to);
         }
       });
-      console.log('lES CONVERSIONES YO', that.data.conversations);
       that.trigger(that.data);
     });
   },

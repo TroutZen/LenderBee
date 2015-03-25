@@ -4,6 +4,8 @@ var Item = global.db.Item;
 var Message = global.db.Message;
 
 var controller = {};
+
+// creates new user
 controller.create = function(req, res, next){
 	var newUser = {};
 	newUser.fbid = req.body.id;
@@ -53,6 +55,7 @@ controller.create = function(req, res, next){
 	})
 }
 
+// fetches user record
 controller.getOne = function(req, res, next){
 	var userId = req.params.userId;
 	User.find({
@@ -80,6 +83,7 @@ controller.init = function(req, res, next){
 	})
 }
 
+// test if user is signed up with our app
 controller.testUser = function(req, res, next){
 	User.find({
 		where: {
@@ -93,17 +97,6 @@ controller.testUser = function(req, res, next){
 		}
 		res.json("outside");
 	})
-	//res.json("outside");
 }
 
-// controller.signin = function(req, res, next){
-// 	//sign in with fb
-// 	//check users table for match and do routing
-// }
-
-// controller.update = function(req, res, next){
-// }
-
-// controller.delete = function(req, res, next){
-// }
 module.exports = controller;

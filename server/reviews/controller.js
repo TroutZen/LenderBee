@@ -7,6 +7,7 @@ var controller = {};
 var Sequelize = require('sequelize');
 var ReviewInstance = require('../utils/reviewConstructor.js');
 
+// calcs average rating
 var calculateAvg = function(userId, cb) {
   var sum;
   Review.sum('rating', {
@@ -29,9 +30,7 @@ var calculateAvg = function(userId, cb) {
   });
 };
 
-/* Creates a new review with rating and review.
- * THIS IS NOT BEING USED CURRENTLY.
- */
+// creates new review
 controller.create = function(req, res, next){
   console.log('reviews ctrl create req.body:', req.body);
   console.log('reviews ctrl create req.params', req.params);
@@ -62,10 +61,7 @@ controller.create = function(req, res, next){
     });
 };
 
-/* Creates pending reviews.
- * Two blank review entries in the database are created
- * when the borrower returns the item.
- */
+// creates two blank pending reviews
 controller.createPending = function(req, res, next){
   var lender_id   = req.params.lender_id;
   var borrower_id = req.params.borrower_id;
@@ -83,8 +79,7 @@ controller.createPending = function(req, res, next){
   });
 };
 
-/* Updates a review with the rating and review.
- */
+// updates a review with rating and comments
 controller.updateOne = function(req, res, next) {
   var rating = req.body.rating;
   var review = req.body.review;
@@ -123,12 +118,8 @@ controller.updateOne = function(req, res, next) {
   });
 };
 
-/* Fetches all reviews for the logged in user.
- */
-
+// fetches all reviews for a logged in user
 controller.getReviews = function(req, res, next){
-  // console.log('fetching reviews for user ', req.params.user);
-  // TODO: only return reviews that do not have null ratings
   var userId = req.params.userId;
   Review.findAll({
     where: {reviewee_id: userId},
@@ -141,8 +132,7 @@ controller.getReviews = function(req, res, next){
   });
 };
 
-/* Fetches all reviews that a user has to complete.
- */
+// fetches reviews that a user needs to complete
 controller.getPendingReviews = function(req, res, next) {
   console.log('fetching pending reviews');
   var userId = req.params.userId;

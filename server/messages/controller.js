@@ -5,10 +5,8 @@ var Messages = global.db.Message;
 var controller = {};
 var Sequelize = require('sequelize');
 
-/* Creates a message between two users.
- */
+// creates a message between two users
 controller.create = function(req, res, next){
-  //req.body will have the message
   var from = req.params.fromId;
   var to = req.params.toId;
 
@@ -23,9 +21,7 @@ controller.create = function(req, res, next){
   });
 }
 
-/* Retrieves all messages that a user wrote
- * or received.
- */
+// fetches all active messages for a user
 controller.getMessages = function(req, res, next){
   Messages.findAll({
     where: Sequelize.or(
